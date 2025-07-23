@@ -8,7 +8,8 @@
     <script src="https://kit.fontawesome.com/23cd7b8172.js" crossorigin="anonymous"></script>
     
     <!-- Lightning Out Script -->
-    <script src="https://sonacollegeoftechnology4-dev-ed.develop.lightning.force.com/lightning/lightning.out.js"></script>
+    <script type="text/javascript" src="https://sonacollegeoftechnology4-dev-ed.develop.my.site.com/demo/lightning/lightning.out.js"></script>
+
 </head>
 <body>
     <div class="head">
@@ -34,8 +35,7 @@
     <h2>Non Salesforce web application</h2>
     <div id="lightning"></div>
 
-    <!-- Combined JavaScript -->
-    <script>
+  <script>
         function run(){
             let Html = document.getElementById("html-id").value;
             let css = document.getElementById("css-id").value;
@@ -47,19 +47,27 @@
         }
 
         // Lightning Out integration
-        $Lightning.use("c:LightningOutApp",
-            function() {
-                $Lightning.createComponent(
-                    "c:auraWrapperLWC",
-                    {},
-                    "lightning",
-                    function(cmp) {
-                        console.log("Component loaded successfully!");
-                    }
-                );
-            },
-            "https://sonacollegeoftechnology4-dev-ed.develop.lightning.force.com"
-        );
+        $Lightning.use("c:lOutApp", function() {
+
+          /*  $Lightning.createComponent(
+                "lightning:flow",
+                {},
+                "flowContainer",
+                function(component) {
+                    component.startFlow("Student_Registration_Form");
+                }
+            );*/
+
+            $Lightning.createComponent(
+                "c:childLWCComponent", 
+                {}, 
+                "lwcContainer", 
+                function(component) {
+                    console.log("Parent LWC Loaded");
+                }
+            );
+
+        }, "https://sonacollegeoftechnology4-dev-ed.develop.my.site.com/demo");
     </script>
 </body>
 </html>
